@@ -1,0 +1,74 @@
+<html>
+<head>
+  <style>
+    .card {
+      page-break-inside:avoid;
+      float: left;
+      width: 140px;
+      height: 280px;
+      border-style: dashed;
+    }
+
+    .label {
+      text-align: right;
+      font-weight: bold;
+    }
+
+    .side-label {
+      font-weight: bold;
+      font-size: 30pt;
+
+      position: relative;
+      left: -40px;
+      top: 90px;
+
+      -webkit-transform: rotate(-90deg);
+      -moz-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+      -o-transform: rotate(-90deg);
+      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    }
+
+    .color-codes {
+      float: right;
+      margin-right: 40px;
+      margin-top: 0px;
+     }
+
+    .square {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+    }
+
+  </style>
+</head>
+<body>
+
+  <% for current_resistor in resistor_list %>
+
+      <div class="card">
+        <div class="label"><%= current_resistor['val'] %>Ω</div>
+
+        <div class="color-codes">
+            <% for four in current_resistor['four'] %><div class="square" style="background-color: <%= four %>"></div><% end %>
+            <div style="font-size: 5pt;">
+              <br /><%= current_resistor['four'].join("/") %>
+            </div>
+            <br />
+            <% for five in current_resistor['five'] %><div class="square" style="background-color: <%= five %>"></div><% end %>
+            <div style="font-size: 5pt;">
+              <br /><%= current_resistor['five'].join("/") %>
+            </div>
+        </div>
+
+        <div class="side-label">
+          <%= current_resistor['val'] %>Ω
+        </div>
+
+      </div>
+
+  <% end %>
+
+</body>
+<html>
